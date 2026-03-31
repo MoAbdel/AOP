@@ -6,22 +6,22 @@
   <title>American Oil Products — The Chemistry of Scale</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ══════════════════════════════════════════
        DESIGN SYSTEM
     ══════════════════════════════════════════ */
     :root {
-      --obsidian:    #0A0A0A;
-      --obsidian-90: rgba(10,10,10,0.92);
-      --dark:        #111111;
-      --dark-surface:#161616;
-      --canvas:      #F9F8F5;
-      --canvas-warm: #F2EFE8;
-      --amber:       #C9A84C;
-      --amber-bright:#D4AF37;
-      --amber-glow:  rgba(212,175,55,0.15);
-      --amber-border:rgba(212,175,55,0.3);
+      --obsidian:    #0A120A;
+      --obsidian-90: rgba(10,18,10,0.92);
+      --dark:        #101C11;
+      --dark-surface:#182619;
+      --canvas:      #FFFFFF;
+      --canvas-warm: #F1F1F1;
+      --amber:       #7A960F;
+      --amber-bright:#A1BC25;
+      --amber-glow:  rgba(161,188,37,0.15);
+      --amber-border:rgba(161,188,37,0.3);
       --text-primary:#0A0A0A;
       --text-body:   #3A3A3A;
       --text-muted:  #7A7A7A;
@@ -34,7 +34,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Figtree', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: var(--text-primary);
       background: var(--canvas);
       overflow-x: hidden;
@@ -82,7 +82,7 @@
        TOP ANNOUNCE BAR
     ══════════════════════════════════════════ */
     .announce {
-      background: var(--obsidian);
+      background: var(--canvas);
       text-align: center;
       padding: 9px 20px;
       font-family: 'DM Mono', monospace;
@@ -99,10 +99,10 @@
       position: sticky;
       top: 0;
       z-index: 200;
-      background: rgba(10, 10, 10, 0.78);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
-      border-bottom: 1px solid var(--border-dark);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       transition: background 0.3s;
     }
     .nav-inner {
@@ -118,7 +118,6 @@
     .nav-logo img {
       height: 46px;
       width: auto;
-      filter: brightness(0) invert(1);
       opacity: 0.9;
     }
     .nav-links {
@@ -128,10 +127,10 @@
       list-style: none;
     }
     .nav-links > li > a {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 500;
-      color: rgba(255,255,255,0.55);
+      color: rgba(10,18,10,0.65);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       display: flex;
@@ -150,13 +149,13 @@
       font-family: 'DM Mono', monospace;
       font-size: 13px;
       font-weight: 500;
-      color: rgba(255,255,255,0.45);
+      color: rgba(10,18,10,0.55);
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
     .nav-phone:hover { color: var(--amber); }
     .btn-cta {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -169,7 +168,7 @@
       display: inline-block;
     }
     .btn-cta:hover {
-      background: #e8c84a;
+      background: #90ab1e;
       transform: translateY(-1px);
     }
 
@@ -182,7 +181,7 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: var(--obsidian);
+      background: var(--canvas);
     }
     .hero-media {
       position: absolute;
@@ -193,7 +192,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.35;
+      opacity: 0.15;
       transform: scale(1.04);
       animation: heroZoom 18s ease-in-out infinite alternate;
     }
@@ -214,7 +213,7 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.7) 100%);
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(255,255,255,0.85) 100%);
     }
     .hero-content {
       position: relative;
@@ -244,10 +243,10 @@
       background: var(--amber);
     }
     .hero h1 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(52px, 7.5vw, 96px);
       font-weight: 800;
-      color: var(--white);
+      color: var(--obsidian);
       line-height: 1.02;
       letter-spacing: -0.02em;
       max-width: 780px;
@@ -265,10 +264,10 @@
       margin-bottom: 28px;
     }
     .hero-sub {
-      font-family: 'Figtree', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       font-weight: 300;
-      color: rgba(255,255,255,0.60);
+      color: rgba(10,18,10,0.60);
       max-width: 500px;
       line-height: 1.78;
       margin-bottom: 52px;
@@ -280,7 +279,7 @@
       flex-wrap: wrap;
     }
     .btn-amber {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -293,27 +292,27 @@
       display: inline-block;
     }
     .btn-amber:hover {
-      background: #e8c84a;
+      background: #90ab1e;
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(212,175,55,0.35);
       color: var(--obsidian);
     }
     .btn-ghost-white {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(10,18,10,0.65);
+      border: 1px solid rgba(10,18,10,0.2);
       padding: 13px 30px;
       border-radius: 3px;
       transition: color 0.2s, border-color 0.2s;
       display: inline-block;
     }
     .btn-ghost-white:hover {
-      color: white;
-      border-color: rgba(255,255,255,0.55);
+      color: var(--obsidian);
+      border-color: rgba(10,18,10,0.65);
     }
     .hero-scroll-hint {
       position: absolute;
@@ -331,13 +330,13 @@
       font-family: 'DM Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.2em;
-      color: white;
+      color: var(--obsidian);
       text-transform: uppercase;
     }
     .scroll-line {
       width: 1px;
       height: 48px;
-      background: linear-gradient(to bottom, white, transparent);
+      background: linear-gradient(to bottom, var(--obsidian), transparent);
       animation: scrollPulse 1.8s ease-in-out infinite;
     }
     @keyframes scrollPulse {
@@ -374,7 +373,7 @@
       background: var(--amber);
     }
     .section-headline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(30px, 3.5vw, 48px);
       font-weight: 800;
       color: var(--text-primary);
@@ -399,7 +398,7 @@
     .bento-tile--hero {
       grid-column: span 7;
       grid-row: span 2;
-      background: var(--obsidian);
+      background: var(--canvas);
       padding: 52px 48px;
       min-height: 340px;
       display: flex;
@@ -430,8 +429,8 @@
     /* Bottom wide bar */
     .bento-tile--wide {
       grid-column: span 12;
-      background: var(--dark-surface);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--canvas-warm);
+      border: 1px solid rgba(10,18,10,0.06);
       padding: 40px 48px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -446,16 +445,16 @@
       margin-bottom: 24px;
     }
     .bento-num--dark {
-      color: rgba(255,255,255,0.25);
+      color: rgba(10,18,10,0.25);
     }
     .bento-num--black {
       color: rgba(10,10,10,0.4);
     }
     .bento-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 26px;
       font-weight: 700;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.01em;
       line-height: 1.22;
       margin-bottom: 16px;
@@ -471,7 +470,7 @@
       font-size: 15px;
       font-weight: 300;
       line-height: 1.72;
-      color: rgba(255,255,255,0.52);
+      color: rgba(10,18,10,0.52);
     }
     .bento-body--dark {
       color: var(--text-body);
@@ -484,7 +483,7 @@
       font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(10,18,10,0.25);
       margin-top: auto;
     }
     .bento-bar-item .bento-num {
@@ -492,37 +491,37 @@
     }
     .bento-bar-divider {
       width: 1px;
-      background: rgba(255,255,255,0.07);
+      background: rgba(10,18,10,0.07);
       align-self: stretch;
       display: none;
     }
     .bento-bar-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       font-weight: 700;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.01em;
       margin-bottom: 10px;
     }
     .bento-bar-body {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.45);
+      color: rgba(10,18,10,0.55);
       line-height: 1.65;
     }
     .bento-stat {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 52px;
       font-weight: 800;
       line-height: 1;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.03em;
       margin-bottom: 6px;
     }
     .bento-stat-label {
       font-size: 13px;
       font-weight: 400;
-      color: rgba(255,255,255,0.4);
+      color: rgba(10,18,10,0.4);
       letter-spacing: 0.03em;
     }
 
@@ -531,7 +530,7 @@
     ══════════════════════════════════════════ */
     .products {
       padding: 120px 0;
-      background: var(--obsidian);
+      background: var(--canvas);
     }
     .products .section-label {
       color: rgba(212,175,55,0.8);
@@ -540,7 +539,7 @@
       background: rgba(212,175,55,0.8);
     }
     .products .section-headline {
-      color: white;
+      color: var(--obsidian);
     }
     .products-header {
       display: flex;
@@ -553,12 +552,12 @@
     .products-header p {
       font-size: 16px;
       font-weight: 300;
-      color: rgba(255,255,255,0.45);
+      color: rgba(10,18,10,0.55);
       line-height: 1.72;
       margin-top: 16px;
     }
     .catalog-link {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -585,7 +584,7 @@
       overflow: hidden;
       cursor: pointer;
       aspect-ratio: 3/4;
-      background: var(--dark-surface);
+      background: var(--canvas-warm);
     }
     .product-card-img {
       width: 100%;
@@ -603,16 +602,16 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       padding: 28px 28px 28px;
-      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 100%);
       z-index: 2;
       transition: opacity 0.3s;
     }
     .product-card:hover .product-card-base { opacity: 0; }
     .product-card-name {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 20px;
       font-weight: 700;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.01em;
     }
     .product-card-tag {
@@ -628,7 +627,7 @@
       position: absolute;
       inset: 0;
       z-index: 3;
-      background: rgba(10,10,10,0.92);
+      background: rgba(255,255,255,0.95);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -643,17 +642,17 @@
       transform: translateY(0);
     }
     .product-hover-name {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 22px;
       font-weight: 800;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.01em;
       margin-bottom: 16px;
     }
     .product-hover-desc {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.52);
+      color: rgba(10,18,10,0.52);
       line-height: 1.65;
       margin-bottom: 28px;
     }
@@ -667,14 +666,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(10,18,10,0.06);
       padding-bottom: 8px;
     }
     .spec-label {
       font-family: 'DM Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.3);
+      color: rgba(10,18,10,0.3);
       text-transform: uppercase;
     }
     .spec-value {
@@ -684,7 +683,7 @@
       font-weight: 500;
     }
     .product-hover-link {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -721,7 +720,7 @@
       min-height: 380px;
       display: flex;
       align-items: flex-end;
-      background: var(--dark);
+      background: var(--canvas);
     }
     .industry-bg {
       position: absolute;
@@ -735,7 +734,7 @@
     .industry-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, transparent 30%, rgba(10,10,10,0.85) 100%);
+      background: linear-gradient(160deg, transparent 30%, rgba(255,255,255,0.95) 100%);
     }
     .industry-body {
       position: relative;
@@ -752,10 +751,10 @@
       margin-bottom: 12px;
     }
     .industry-headline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 22px;
       font-weight: 800;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.01em;
       line-height: 1.2;
       margin-bottom: 10px;
@@ -763,21 +762,21 @@
     .industry-sub {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.55);
+      color: rgba(10,18,10,0.65);
       line-height: 1.65;
       margin-bottom: 20px;
     }
     .industry-link {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(10,18,10,0.4);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(10,18,10,0.12);
       padding-bottom: 4px;
       transition: color 0.2s, border-color 0.2s;
     }
@@ -789,14 +788,14 @@
     ══════════════════════════════════════════ */
     .services {
       padding: 120px 0;
-      background: var(--dark-surface);
+      background: var(--canvas-warm);
     }
     .services-header {
       margin-bottom: 64px;
     }
     .services .section-label { color: rgba(212,175,55,0.75); }
     .services .section-label::before { background: rgba(212,175,55,0.75); }
-    .services .section-headline { color: white; }
+    .services .section-headline { color: var(--obsidian); }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -804,18 +803,18 @@
     }
     .service-tile {
       padding: 44px 40px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(10,18,10,0.03);
+      border: 1px solid rgba(10,18,10,0.04);
       transition: background 0.25s;
       position: relative;
     }
-    .service-tile:hover { background: rgba(255,255,255,0.06); }
+    .service-tile:hover { background: rgba(10,18,10,0.06); }
     .service-tile::after {
       content: '';
       position: absolute;
       bottom: 0; left: 40px; right: 40px;
       height: 1px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(10,18,10,0.05);
     }
     .service-icon-wrap {
       width: 52px;
@@ -829,16 +828,16 @@
       width: 44px;
       height: 44px;
       object-fit: contain;
-      filter: brightness(0) invert(1);
+      filter: brightness(0);
       opacity: 0.5;
       transition: opacity 0.25s;
     }
     .service-tile:hover .service-icon { opacity: 0.8; }
     .service-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 17px;
       font-weight: 700;
-      color: rgba(255,255,255,0.85);
+      color: rgba(10,18,10,0.85);
       letter-spacing: -0.01em;
       margin-bottom: 12px;
       line-height: 1.3;
@@ -846,7 +845,7 @@
     .service-body {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.35);
+      color: rgba(10,18,10,0.35);
       line-height: 1.72;
     }
 
@@ -855,7 +854,7 @@
     ══════════════════════════════════════════ */
     .about {
       padding: 120px 0;
-      background: var(--obsidian);
+      background: var(--canvas);
       position: relative;
       overflow: hidden;
     }
@@ -864,10 +863,10 @@
       top: 50%;
       right: -60px;
       transform: translateY(-50%);
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 200px;
       font-weight: 800;
-      color: rgba(255,255,255,0.02);
+      color: rgba(10,18,10,0.02);
       letter-spacing: -0.04em;
       line-height: 1;
       pointer-events: none;
@@ -908,7 +907,7 @@
       text-align: center;
     }
     .about-badge-year {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 40px;
       font-weight: 800;
       line-height: 1;
@@ -929,10 +928,10 @@
       background: rgba(212,175,55,0.75);
     }
     .about-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 800;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.02em;
       line-height: 1.12;
       margin-bottom: 24px;
@@ -943,7 +942,7 @@
     .about-body {
       font-size: 16px;
       font-weight: 300;
-      color: rgba(255,255,255,0.48);
+      color: rgba(10,18,10,0.48);
       line-height: 1.78;
       margin-bottom: 20px;
     }
@@ -952,7 +951,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -970,9 +969,9 @@
     ══════════════════════════════════════════ */
     .trust {
       padding: 80px 0;
-      background: var(--dark-surface);
-      border-top: 1px solid rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      background: var(--canvas-warm);
+      border-top: 1px solid rgba(10,18,10,0.04);
+      border-bottom: 1px solid rgba(10,18,10,0.04);
     }
     .trust-grid {
       display: grid;
@@ -981,12 +980,12 @@
     }
     .trust-item {
       padding: 0 40px;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(10,18,10,0.06);
       text-align: center;
     }
     .trust-item:last-child { border-right: none; }
     .trust-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 52px;
       font-weight: 800;
       color: var(--amber-bright);
@@ -999,7 +998,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.28);
+      color: rgba(10,18,10,0.28);
       text-transform: uppercase;
     }
 
@@ -1007,7 +1006,7 @@
        TECHNICAL SPECS BAR
     ══════════════════════════════════════════ */
     .specs-bar {
-      background: var(--obsidian);
+      background: var(--canvas);
       padding: 72px 0;
     }
     .specs-bar-inner {
@@ -1019,10 +1018,10 @@
     .specs-bar .section-label { color: rgba(212,175,55,0.75); }
     .specs-bar .section-label::before { background: rgba(212,175,55,0.75); }
     .specs-label-hed {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 28px;
       font-weight: 800;
-      color: white;
+      color: var(--obsidian);
       letter-spacing: -0.02em;
       line-height: 1.15;
       margin-top: 16px;
@@ -1033,23 +1032,23 @@
       gap: 2px;
     }
     .spec-cell {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10,18,10,0.03);
+      border: 1px solid rgba(10,18,10,0.05);
       padding: 20px 24px;
     }
     .spec-cell-label {
       font-family: 'DM Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.22);
+      color: rgba(10,18,10,0.22);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
     .spec-cell-value {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       font-weight: 700;
-      color: white;
+      color: var(--obsidian);
       margin-bottom: 2px;
     }
     .spec-cell-sub {
@@ -1095,7 +1094,7 @@
       background: rgba(10,10,10,0.3);
     }
     .cta-headline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(34px, 5vw, 60px);
       font-weight: 800;
       color: var(--obsidian);
@@ -1118,21 +1117,21 @@
       flex-wrap: wrap;
     }
     .btn-dark {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: white;
-      background: var(--obsidian);
+      color: #FFFFFF;
+      background: var(--canvas);
       padding: 14px 34px;
       border-radius: 3px;
       transition: background 0.2s, transform 0.15s;
       display: inline-block;
     }
-    .btn-dark:hover { background: #222; transform: translateY(-2px); color: white; }
+    .btn-dark:hover { background: #222; transform: translateY(-2px); color: #FFFFFF; }
     .btn-ghost-dark {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.06em;
@@ -1150,27 +1149,27 @@
        FOOTER
     ══════════════════════════════════════════ */
     footer {
-      background: var(--obsidian);
-      border-top: 1px solid rgba(255,255,255,0.04);
+      background: var(--canvas);
+      border-top: 1px solid rgba(10,18,10,0.04);
     }
     .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1.4fr;
       gap: 64px;
       padding: 72px 0 64px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(10,18,10,0.05);
     }
     .footer-logo {
       height: 40px;
       width: auto;
-      filter: brightness(0) invert(1);
+      filter: brightness(0);
       opacity: 0.55;
       margin-bottom: 20px;
     }
     .footer-tagline {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.3);
+      color: rgba(10,18,10,0.3);
       line-height: 1.7;
       max-width: 260px;
       margin-bottom: 24px;
@@ -1178,7 +1177,7 @@
     .footer-phone {
       font-family: 'DM Mono', monospace;
       font-size: 15px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(10,18,10,0.6);
       letter-spacing: 0.04em;
       transition: color 0.2s;
     }
@@ -1188,7 +1187,7 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: rgba(10,18,10,0.2);
       margin-bottom: 24px;
     }
     .footer-links {
@@ -1200,10 +1199,10 @@
     .footer-links a {
       font-size: 14px;
       font-weight: 300;
-      color: rgba(255,255,255,0.38);
+      color: rgba(10,18,10,0.38);
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+    .footer-links a:hover { color: rgba(10,18,10,0.75); }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -1215,7 +1214,7 @@
     .footer-copy {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
-      color: rgba(255,255,255,0.15);
+      color: rgba(10,18,10,0.15);
       letter-spacing: 0.06em;
     }
     .footer-legal {
@@ -1225,11 +1224,11 @@
     .footer-legal a {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
-      color: rgba(255,255,255,0.15);
+      color: rgba(10,18,10,0.15);
       letter-spacing: 0.04em;
       transition: color 0.2s;
     }
-    .footer-legal a:hover { color: rgba(255,255,255,0.45); }
+    .footer-legal a:hover { color: rgba(10,18,10,0.55); }
 
     /* ══════════════════════════════════════════
        SCROLL-TO-TOP
@@ -1255,7 +1254,7 @@
       border: none;
     }
     .scroll-top.visible { opacity: 1; transform: translateY(0); }
-    .scroll-top:hover { background: #e8c84a; }
+    .scroll-top:hover { background: #90ab1e; }
 
     /* ══════════════════════════════════════════
        RESPONSIVE
@@ -1288,6 +1287,34 @@
       .footer-top { grid-template-columns: 1fr; }
       .hero h1 { font-size: clamp(38px, 10vw, 60px); }
       .products-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ══════════════════════════════════════════
+       HOTFIX OVERRIDES
+    ══════════════════════════════════════════ */
+    .bento-tile--hero { background: var(--obsidian) !important; }
+    .bento-tile--hero .bento-title { color: white !important; }
+    .bento-tile--hero .bento-body { color: rgba(255,255,255,0.7) !important; }
+    
+    /* Ensuring the Navigation Header and Hero text are distinctly NOT pure black */
+    .nav { background: rgba(255, 255, 255, 0.98) !important; }
+    .hero h1 { color: #1A2F1A !important; }
+
+    /* CTA Button and Footer Fixes */
+    .cta-band .btn-dark { background: #0A0A0A !important; color: #FFFFFF !important; }
+    .cta-band .btn-dark:hover { background: #222222 !important; color: #FFFFFF !important; }
+    
+    footer, footer p, footer div, footer span, footer a { color: #0A0A0A !important; }
+    footer .footer-col-label { color: #4A4A4A !important; } /* Keep hierarchy on tiny caps text */
+    
+    /* Product Section Tweaks */
+    .product-grid { gap: 16px !important; }
+    .product-card { aspect-ratio: 4/3 !important; border-radius: 6px !important; }
+    .product-card-tag { 
+      color: #0A0A0A !important; 
+      font-size: 11px !important; 
+      font-weight: 700 !important;
+      letter-spacing: 0.22em !important;
     }
   </style>
 </head>
@@ -1413,8 +1440,7 @@
         </div>
         <a href="#" class="catalog-link reveal reveal-delay-2">View Full Catalog</a>
       </div>
-    </div>
-    <div class="product-grid">
+      <div class="product-grid">
 
       <div class="product-card reveal reveal-delay-1">
         <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image11.jpg" alt="Natural Oils" />
@@ -1578,6 +1604,7 @@
         </div>
       </div>
 
+    </div>
     </div>
   </section>
 
