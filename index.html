@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Oil Products — The Chemistry of Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       DESIGN SYSTEM
+    ══════════════════════════════════════════ */
+    :root {
+      --obsidian:    #0A0A0A;
+      --obsidian-90: rgba(10,10,10,0.92);
+      --dark:        #111111;
+      --dark-surface:#161616;
+      --canvas:      #F9F8F5;
+      --canvas-warm: #F2EFE8;
+      --amber:       #C9A84C;
+      --amber-bright:#D4AF37;
+      --amber-glow:  rgba(212,175,55,0.15);
+      --amber-border:rgba(212,175,55,0.3);
+      --text-primary:#0A0A0A;
+      --text-body:   #3A3A3A;
+      --text-muted:  #7A7A7A;
+      --text-faint:  #AAAAAA;
+      --border:      #E8E4DC;
+      --border-dark: rgba(255,255,255,0.08);
+      --white:       #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      color: var(--text-primary);
+      background: var(--canvas);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ══════════════════════════════════════════
+       SCROLL REVEAL ENGINE
+    ══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.reveal--left {
+      transform: translateX(-32px);
+    }
+    .reveal.reveal--right {
+      transform: translateX(32px);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.32s; }
+    .reveal-delay-4 { transition-delay: 0.44s; }
+    .reveal-delay-5 { transition-delay: 0.56s; }
+
+    /* ══════════════════════════════════════════
+       LAYOUT UTIL
+    ══════════════════════════════════════════ */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+    /* ══════════════════════════════════════════
+       TOP ANNOUNCE BAR
+    ══════════════════════════════════════════ */
+    .announce {
+      background: var(--obsidian);
+      text-align: center;
+      padding: 9px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--text-faint);
+    }
+    .announce span { color: var(--amber); }
+
+    /* ══════════════════════════════════════════
+       NAV — GLASSMORPHISM
+    ══════════════════════════════════════════ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10, 10, 10, 0.78);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid var(--border-dark);
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      gap: 32px;
+    }
+    .nav-logo img {
+      height: 46px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links > li > a {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .nav-links > li > a:hover { color: var(--amber); }
+    .nav-links .arrow { font-size: 9px; opacity: 0.5; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-phone {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--amber); }
+    .btn-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      background: var(--amber-bright);
+      padding: 10px 22px;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-cta:hover {
+      background: #e8c84a;
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════
+       HERO — FULL-SCREEN MACRO
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--obsidian);
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      transform: scale(1.04);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.00); }
+    }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+    }
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.7) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 48px;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 7.5vw, 96px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      max-width: 780px;
+      margin-bottom: 32px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber-bright);
+      position: relative;
+    }
+    .hero-rule {
+      width: 80px;
+      height: 2px;
+      background: var(--amber);
+      margin-bottom: 28px;
+    }
+    .hero-sub {
+      font-family: 'Figtree', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.60);
+      max-width: 500px;
+      line-height: 1.78;
+      margin-bottom: 52px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-amber {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--obsidian);
+      background: var(--amber-bright);
+      padding: 14px 32px;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .btn-amber:hover {
+      background: #e8c84a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,175,55,0.35);
+      color: var(--obsidian);
+    }
+    .btn-ghost-white {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 13px 30px;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost-white:hover {
+      color: white;
+      border-color: rgba(255,255,255,0.55);
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+    }
+    .hero-scroll-hint span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: white;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, white, transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(0.7); }
+    }
+
+    /* ══════════════════════════════════════════
+       BENTO WEDGE
+    ══════════════════════════════════════════ */
+    .wedge {
+      padding: 120px 0;
+      background: var(--canvas);
+    }
+    .wedge-header {
+      margin-bottom: 64px;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .section-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+    }
+    .section-headline span {
+      color: var(--amber);
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+    .bento-tile {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Hero tile — spans 7 columns */
+    .bento-tile--hero {
+      grid-column: span 7;
+      grid-row: span 2;
+      background: var(--obsidian);
+      padding: 52px 48px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* Top-right small */
+    .bento-tile--sm {
+      grid-column: span 5;
+      background: var(--canvas-warm);
+      border: 1px solid var(--border);
+      padding: 36px 36px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* Bottom-right medium */
+    .bento-tile--md {
+      grid-column: span 5;
+      background: var(--amber-bright);
+      padding: 36px 36px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* Bottom wide bar */
+    .bento-tile--wide {
+      grid-column: span 12;
+      background: var(--dark-surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+    .bento-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .bento-num--dark {
+      color: rgba(255,255,255,0.25);
+    }
+    .bento-num--black {
+      color: rgba(10,10,10,0.4);
+    }
+    .bento-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+      margin-bottom: 16px;
+    }
+    .bento-title--dark {
+      color: var(--text-primary);
+    }
+    .bento-title--black {
+      color: var(--obsidian);
+      font-size: 22px;
+    }
+    .bento-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: rgba(255,255,255,0.52);
+    }
+    .bento-body--dark {
+      color: var(--text-body);
+    }
+    .bento-body--black {
+      color: rgba(10,10,10,0.65);
+    }
+    .bento-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-top: auto;
+    }
+    .bento-bar-item .bento-num {
+      margin-bottom: 12px;
+    }
+    .bento-bar-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.07);
+      align-self: stretch;
+      display: none;
+    }
+    .bento-bar-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .bento-bar-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+    }
+    .bento-stat {
+      font-family: 'Syne', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1;
+      color: white;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .bento-stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.03em;
+    }
+
+    /* ══════════════════════════════════════════
+       PRODUCT CATALOG — GALLERY CARDS
+    ══════════════════════════════════════════ */
+    .products {
+      padding: 120px 0;
+      background: var(--obsidian);
+    }
+    .products .section-label {
+      color: rgba(212,175,55,0.8);
+    }
+    .products .section-label::before {
+      background: rgba(212,175,55,0.8);
+    }
+    .products .section-headline {
+      color: white;
+    }
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 32px;
+    }
+    .products-header-text { max-width: 580px; }
+    .products-header p {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.72;
+      margin-top: 16px;
+    }
+    .catalog-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-bottom: 1px solid var(--amber-border);
+      padding-bottom: 4px;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .catalog-link:hover { color: var(--amber-bright); border-color: var(--amber-bright); }
+    .catalog-link::after { content: '→'; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 3/4;
+      background: var(--dark-surface);
+    }
+    .product-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
+      opacity: 0.8;
+    }
+    .product-card:hover .product-card-img {
+      transform: scale(1.08);
+      opacity: 0.45;
+    }
+    /* Always-visible label */
+    .product-card-base {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 28px 28px;
+      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 100%);
+      z-index: 2;
+      transition: opacity 0.3s;
+    }
+    .product-card:hover .product-card-base { opacity: 0; }
+    .product-card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+    .product-card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    /* Hover reveal — specs */
+    .product-card-hover {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: rgba(10,10,10,0.92);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .product-card:hover .product-card-hover {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .product-hover-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .product-hover-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .product-hover-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 8px;
+    }
+    .spec-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+    }
+    .spec-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--amber);
+      font-weight: 500;
+    }
+    .product-hover-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.2s;
+    }
+    .product-hover-link:hover { gap: 14px; color: var(--amber-bright); }
+    .product-hover-link::after { content: '→'; }
+
+    /* ══════════════════════════════════════════
+       INDUSTRIES
+    ══════════════════════════════════════════ */
+    .industries {
+      padding: 120px 0;
+      background: var(--canvas);
+    }
+    .industries-header {
+      margin-bottom: 64px;
+    }
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .industry-card {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 380px;
+      display: flex;
+      align-items: flex-end;
+      background: var(--dark);
+    }
+    .industry-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0.5;
+    }
+    .industry-card:hover .industry-bg { transform: scale(1.07); opacity: 0.35; }
+    .industry-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 30%, rgba(10,10,10,0.85) 100%);
+    }
+    .industry-body {
+      position: relative;
+      z-index: 2;
+      padding: 36px 32px;
+      width: 100%;
+    }
+    .industry-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .industry-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .industry-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .industry-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .industry-card:hover .industry-link { color: var(--amber); border-color: var(--amber-border); }
+    .industry-link::after { content: '→'; }
+
+    /* ══════════════════════════════════════════
+       SERVICES — REFINED GRID
+    ══════════════════════════════════════════ */
+    .services {
+      padding: 120px 0;
+      background: var(--dark-surface);
+    }
+    .services-header {
+      margin-bottom: 64px;
+    }
+    .services .section-label { color: rgba(212,175,55,0.75); }
+    .services .section-label::before { background: rgba(212,175,55,0.75); }
+    .services .section-headline { color: white; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-tile {
+      padding: 44px 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.25s;
+      position: relative;
+    }
+    .service-tile:hover { background: rgba(255,255,255,0.06); }
+    .service-tile::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 40px; right: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+    .service-icon-wrap {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.5;
+      transition: opacity 0.25s;
+    }
+    .service-tile:hover .service-icon { opacity: 0.8; }
+    .service-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .service-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.72;
+    }
+
+    /* ══════════════════════════════════════════
+       ABOUT — "WHERE COMMODITY MEETS CRAFT"
+    ══════════════════════════════════════════ */
+    .about {
+      padding: 120px 0;
+      background: var(--obsidian);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-bg-text {
+      position: absolute;
+      top: 50%;
+      right: -60px;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-size: 200px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.02);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-img {
+      border-radius: 4px;
+      overflow: hidden;
+      height: 480px;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      filter: grayscale(20%);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--amber-bright);
+      color: var(--obsidian);
+      padding: 20px 24px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .about-badge-year {
+      font-family: 'Syne', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .about-badge-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+    .about-text .section-label {
+      color: rgba(212,175,55,0.75);
+    }
+    .about-text .section-label::before {
+      background: rgba(212,175,55,0.75);
+    }
+    .about-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+    .about-title span {
+      color: var(--amber-bright);
+    }
+    .about-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.78;
+      margin-bottom: 20px;
+    }
+    .about-cta {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-bottom: 1px solid var(--amber-border);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s, gap 0.2s;
+    }
+    .about-cta:hover { color: var(--amber-bright); border-color: var(--amber-bright); gap: 16px; }
+    .about-cta::after { content: '→'; }
+
+    /* ══════════════════════════════════════════
+       TRUST METRICS
+    ══════════════════════════════════════════ */
+    .trust {
+      padding: 80px 0;
+      background: var(--dark-surface);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .trust-item {
+      padding: 0 40px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--amber-bright);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .trust-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.28);
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       TECHNICAL SPECS BAR
+    ══════════════════════════════════════════ */
+    .specs-bar {
+      background: var(--obsidian);
+      padding: 72px 0;
+    }
+    .specs-bar-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .specs-bar .section-label { color: rgba(212,175,55,0.75); }
+    .specs-bar .section-label::before { background: rgba(212,175,55,0.75); }
+    .specs-label-hed {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-top: 16px;
+    }
+    .specs-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .spec-cell {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 20px 24px;
+    }
+    .spec-cell-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.22);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .spec-cell-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .spec-cell-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--amber);
+    }
+
+    /* ══════════════════════════════════════════
+       CTA BAND
+    ══════════════════════════════════════════ */
+    .cta-band {
+      padding: 120px 0;
+      background: var(--amber-bright);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: -80px; right: -80px; bottom: -80px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(10,10,10,0.45);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .cta-eyebrow::before, .cta-eyebrow::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: rgba(10,10,10,0.3);
+    }
+    .cta-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 800;
+      color: var(--obsidian);
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(10,10,10,0.55);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-dark {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--obsidian);
+      padding: 14px 34px;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-dark:hover { background: #222; transform: translateY(-2px); color: white; }
+    .btn-ghost-dark {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(10,10,10,0.6);
+      border: 1px solid rgba(10,10,10,0.25);
+      padding: 13px 30px;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost-dark:hover { color: var(--obsidian); border-color: rgba(10,10,10,0.6); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: var(--obsidian);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.4fr;
+      gap: 64px;
+      padding: 72px 0 64px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-logo {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 24px;
+    }
+    .footer-phone {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer-phone:hover { color: var(--amber); }
+    .footer-col-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.06em;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-legal a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.45); }
+
+    /* ══════════════════════════════════════════
+       SCROLL-TO-TOP
+    ══════════════════════════════════════════ */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      background: var(--amber-bright);
+      color: var(--obsidian);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 100;
+      border: none;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: #e8c84a; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .bento-tile--hero { grid-column: span 12; grid-row: span 1; min-height: 260px; }
+      .bento-tile--sm { grid-column: span 6; }
+      .bento-tile--md { grid-column: span 6; }
+      .bento-tile--wide { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .about-inner { grid-template-columns: 1fr; gap: 56px; }
+      .specs-bar-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .trust-item { border-right: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-phone { display: none; }
+      .nav-inner { padding: 0 24px; }
+      .bento-tile--sm, .bento-tile--md { grid-column: span 12; }
+      .bento-tile--wide { grid-column: span 12; grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(38px, 10vw, 60px); }
+      .products-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announce Bar -->
+  <div class="announce">
+    <span>USP / NF / FCC GRADES AVAILABLE</span> &nbsp;·&nbsp; City of Industry, CA &nbsp;·&nbsp; Rail-Served &amp; cGMP Compliant &nbsp;·&nbsp; <span>626.330.7151</span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-oil-products-logo.png" alt="American Oil Products" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Products <span class="arrow">▾</span></a></li>
+        <li><a href="#">Industries <span class="arrow">▾</span></a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Resources <span class="arrow">▾</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:6263307151" class="nav-phone">626.330.7151</a>
+        <a href="#quote" class="btn-cta">Get a Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image1.jpg" alt="" role="presentation" />
+    </div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">Family Owned &amp; Operated Since 1997</div>
+      <h1 class="reveal reveal-delay-1">The <em>Chemistry</em><br>of Scale.</h1>
+      <div class="hero-rule reveal reveal-delay-2"></div>
+      <p class="hero-sub reveal reveal-delay-3">
+        Premium refined oils, waxes, and specialty ingredients delivered with the technical rigor your formulation demands — and the flexible MOQs the refineries won't give you.
+      </p>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="#quote" class="btn-amber">Request a Quote &amp; COA</a>
+        <a href="#products" class="btn-ghost-white">Explore Our Grades</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── BENTO WEDGE ── -->
+  <section class="wedge">
+    <div class="container">
+      <div class="wedge-header reveal">
+        <div class="section-label">Why American Oil Products</div>
+        <h2 class="section-headline">Built for the Brands the<br><span>Big Refineries Ignore.</span></h2>
+      </div>
+      <div class="bento-grid">
+
+        <!-- Hero tile -->
+        <div class="bento-tile bento-tile--hero reveal">
+          <div>
+            <div class="bento-num">01 — Quality</div>
+            <div class="bento-title">Enterprise-Grade Quality.<br>Without Enterprise Minimums.</div>
+          </div>
+          <p class="bento-body">We source and refine to the same exacting standards as the industry's biggest names. Whether you need USP White Mineral Oil or Organic Argan, our documentation is L'Oréal-tier ready — down to the COA, TDS, and SDS, shipped before your PO is even approved.</p>
+        </div>
+
+        <!-- Small tile 1 -->
+        <div class="bento-tile bento-tile--sm reveal reveal-delay-2">
+          <div>
+            <div class="bento-num bento-num--dark">02 — Flexibility</div>
+            <div class="bento-title bento-title--dark">Real-World Flexibility</div>
+          </div>
+          <p class="bento-body bento-body--dark">Mid-market volume, custom blending, MOQs that allow indie brands to scale without the overhead of a major refinery.</p>
+        </div>
+
+        <!-- Amber stat tile -->
+        <div class="bento-tile bento-tile--md reveal reveal-delay-3">
+          <div>
+            <div class="bento-num bento-num--black">Established</div>
+            <div class="bento-stat" style="color: var(--obsidian);">1997</div>
+          </div>
+          <div class="bento-title bento-title--black" style="font-size:15px; font-weight:500; margin-bottom: 0;">Family-owned. Rail-served. Quality-obsessed.</div>
+        </div>
+
+        <!-- Wide bottom bar -->
+        <div class="bento-tile bento-tile--wide reveal reveal-delay-1">
+          <div class="bento-bar-item">
+            <div class="bento-num">03 — Transparency</div>
+            <div class="bento-bar-title">Technical Transparency</div>
+            <p class="bento-bar-body">Get your TDS, SDS, and COAs without the gatekeeping. Our City of Industry hub is rail-served and cGMP compliant.</p>
+          </div>
+          <div class="bento-bar-item">
+            <div class="bento-num">04 — Scale</div>
+            <div class="bento-bar-title">Drum to Tanker</div>
+            <p class="bento-bar-body">From single-drum custom fills to full tanker loads — we match your volume, not the other way around.</p>
+          </div>
+          <div class="bento-bar-item">
+            <div class="bento-num">05 — Network</div>
+            <div class="bento-bar-title">48-State Reach</div>
+            <p class="bento-bar-body">In-house transportation fleet with rail access. Whether palletized or bulk tanker, delivery is always on our terms.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCT CATALOG ── -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="products-header">
+        <div class="products-header-text reveal">
+          <div class="section-label">Product Catalog</div>
+          <h2 class="section-headline">The Staples.<br>Fully Documented.</h2>
+          <p>White Mineral Oils in Grades 50–500. Natural carriers including Almond, Argan, Avocado, and Jojoba. Every SKU ships with a COA — no login required.</p>
+        </div>
+        <a href="#" class="catalog-link reveal reveal-delay-2">View Full Catalog</a>
+      </div>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card reveal reveal-delay-1">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image11.jpg" alt="Natural Oils" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Carrier Oils</div>
+          <div class="product-card-name">Natural Oils</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Natural Oils</div>
+          <p class="product-hover-desc">Versatile carrier oils for personal care, cosmetics, and food — sourced for purity and batch consistency.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Grades Available</span>
+              <span class="spec-value">USP / FCC / Organic</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Applications</span>
+              <span class="spec-value">Skincare, Haircare, Food</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Documentation</span>
+              <span class="spec-value">COA + TDS + SDS</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/09/essential-oils-image-final2.jpg" alt="Essential Oils" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Aromatics</div>
+          <div class="product-card-name">Essential Oils</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Essential Oils</div>
+          <p class="product-hover-desc">Carefully sourced and traced directly to trusted producers worldwide. Full traceability documentation included.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Origin Tracing</span>
+              <span class="spec-value">Full Chain of Custody</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Quality</span>
+              <span class="spec-value">GC/MS Verified</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Volume</span>
+              <span class="spec-value">Drum to Tote</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-3">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image16.jpg" alt="Waxes & Fatty Acids" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Texturizers</div>
+          <div class="product-card-name">Waxes &amp; Fatty Acids</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Waxes &amp; Fatty Acids</div>
+          <p class="product-hover-desc">Essential components for emulsification, texture, and structure in personal care, candles, and coatings.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Types</span>
+              <span class="spec-value">Paraffin, Soy, Beeswax</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Melt Points</span>
+              <span class="spec-value">Custom Range Available</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Applications</span>
+              <span class="spec-value">Candle, Cosmetic, Industrial</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/05/alcohols-glycols-image-final.jpg" alt="Alcohols & Glycols" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Solvents &amp; Carriers</div>
+          <div class="product-card-name">Alcohols &amp; Glycols</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Alcohols &amp; Glycols</div>
+          <p class="product-hover-desc">High-purity solvents, carriers, and humectants for cosmetics, pharmaceuticals, and industrial formulations.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Purity</span>
+              <span class="spec-value">USP / NF Grade</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Products</span>
+              <span class="spec-value">PG, BG, SD Alcohol</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Compliance</span>
+              <span class="spec-value">FDA / cGMP</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image1.jpg" alt="Petrolatum & Mineral Oils" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Petro-Derived</div>
+          <div class="product-card-name">Petrolatum &amp; Mineral Oils</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Petrolatum &amp; Mineral Oils</div>
+          <p class="product-hover-desc">Versatile USP-grade bases available in a full viscosity range — grades 50 through 500 in stock.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Viscosity Range</span>
+              <span class="spec-value">Grade 50 — Grade 500</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Certification</span>
+              <span class="spec-value">USP / NF / FCC</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Color</span>
+              <span class="spec-value">White (No. 1 Saybolt)</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-3">
+        <img class="product-card-img" src="https://americanoilproducts.com/wp-content/uploads/2025/05/specialty-industrial-products-image-final.jpg" alt="Specialty & Industrial" />
+        <div class="product-card-base">
+          <div class="product-card-tag">Specialty</div>
+          <div class="product-card-name">Specialty &amp; Industrial</div>
+        </div>
+        <div class="product-card-hover">
+          <div class="product-hover-name">Specialty &amp; Industrial</div>
+          <p class="product-hover-desc">Functional ingredients and specialty chemicals for industrial, home care, and manufacturing applications.</p>
+          <div class="product-hover-specs">
+            <div class="spec-row">
+              <span class="spec-label">Categories</span>
+              <span class="spec-value">HI&amp;I, Industrial, Ag</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Custom Blending</span>
+              <span class="spec-value">Available on Request</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Technical Support</span>
+              <span class="spec-value">Formulation Assistance</span>
+            </div>
+          </div>
+          <a href="#" class="product-hover-link">Find Out More</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── INDUSTRIES ── -->
+  <section class="industries">
+    <div class="container">
+      <div class="industries-header reveal">
+        <div class="section-label">Industries We Serve</div>
+        <h2 class="section-headline">Formulated for<br>the End Result.</h2>
+      </div>
+      <div class="industry-grid">
+
+        <div class="industry-card reveal reveal-delay-1">
+          <div class="industry-bg" style="background-image: url('https://americanoilproducts.com/wp-content/uploads/2025/09/essential-oils-image-final2.jpg');"></div>
+          <div class="industry-gradient"></div>
+          <div class="industry-body">
+            <div class="industry-num">01 / Personal Care</div>
+            <div class="industry-headline">Purity in Every Drop.</div>
+            <p class="industry-sub">High-clarity emollients and botanical carriers for formulators who refuse to compromise on skin-feel or stability.</p>
+            <span class="industry-link">Cosmetics &amp; Personal Care</span>
+          </div>
+        </div>
+
+        <div class="industry-card reveal reveal-delay-2">
+          <div class="industry-bg" style="background-image: url('https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image16.jpg');"></div>
+          <div class="industry-gradient"></div>
+          <div class="industry-body">
+            <div class="industry-num">02 / Home &amp; Candle</div>
+            <div class="industry-headline">Precision Burn,<br>Clean Throw.</div>
+            <p class="industry-sub">Consistent waxes engineered for superior scent load and aesthetic finish — from paraffin to soy blends.</p>
+            <span class="industry-link">Candle &amp; Home Care</span>
+          </div>
+        </div>
+
+        <div class="industry-card reveal reveal-delay-3">
+          <div class="industry-bg" style="background-image: url('https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image11.jpg');"></div>
+          <div class="industry-gradient"></div>
+          <div class="industry-body">
+            <div class="industry-num">03 / Pharma &amp; Food</div>
+            <div class="industry-headline">Compliance You<br>Can Trust.</div>
+            <p class="industry-sub">Full traceability and rigorous batch testing for high-stakes pharmaceutical and food manufacturing.</p>
+            <span class="industry-link">Pharma &amp; Food Grade</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <div class="section-label">Our Capabilities</div>
+        <h2 class="section-headline">More Than Supply.<br>A Systems Partner.</h2>
+      </div>
+    </div>
+    <div class="container" style="padding: 0 48px;">
+      <div class="services-grid">
+
+        <div class="service-tile reveal reveal-delay-1">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Manufacturer-small.png" alt="" />
+          </div>
+          <div class="service-title">Manufacturer Direct Sourced Materials</div>
+          <p class="service-body">We source directly from manufacturers, cutting out unnecessary middlemen to deliver better pricing and supply chain transparency.</p>
+        </div>
+
+        <div class="service-tile reveal reveal-delay-2">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Quality-Control-small.png" alt="" />
+          </div>
+          <div class="service-title">Rigorous Screening &amp; QC</div>
+          <p class="service-body">Every product is carefully screened against rigorous specifications before it reaches your dock. No exceptions, no shortcuts.</p>
+        </div>
+
+        <div class="service-tile reveal reveal-delay-3">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Quality-small.png" alt="" />
+          </div>
+          <div class="service-title">Consistent Product Quality</div>
+          <p class="service-body">Consistent quality through procurement to exacting specifications — every batch, every time, with documentation to prove it.</p>
+        </div>
+
+        <div class="service-tile reveal reveal-delay-1">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Industry-Solution-small.png" alt="" />
+          </div>
+          <div class="service-title">Industry-Specific Solutions</div>
+          <p class="service-body">Shelf-ready products or custom blending to meet your formulation needs across personal care, pharma, candle, and industrial sectors.</p>
+        </div>
+
+        <div class="service-tile reveal reveal-delay-2">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Warehousing-small.png" alt="" />
+          </div>
+          <div class="service-title">Local Warehousing, Quick Turnaround</div>
+          <p class="service-body">Our Los Angeles-based, rail-served warehouse enables expedited delivery, ensuring your products arrive promptly and efficiently.</p>
+        </div>
+
+        <div class="service-tile reveal reveal-delay-3">
+          <div class="service-icon-wrap">
+            <img class="service-icon" src="https://americanoilproducts.com/wp-content/uploads/2025/04/American-Oil-Products-Website-Icons_Delivery-small.png" alt="" />
+          </div>
+          <div class="service-title">In-House Transportation</div>
+          <p class="service-body">Whether palletized or bulk tanker, we deliver with in-house capacity — the capacity to handle large-volume shipments on your schedule.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TECHNICAL SPECS BAR ── -->
+  <div class="specs-bar">
+    <div class="container">
+      <div class="specs-bar-inner">
+        <div class="reveal">
+          <div class="section-label">Technical Standards</div>
+          <div class="specs-label-hed">Every Product.<br>Every Grade.<br>Fully Documented.</div>
+        </div>
+        <div class="specs-table reveal reveal-delay-2">
+          <div class="spec-cell">
+            <div class="spec-cell-label">Mineral Oil Grades</div>
+            <div class="spec-cell-value">50 — 500</div>
+            <div class="spec-cell-sub">Viscosity Range (SUS)</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell-label">Primary Certification</div>
+            <div class="spec-cell-value">USP / NF / FCC</div>
+            <div class="spec-cell-sub">Pharma &amp; Food Grade</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell-label">Facility</div>
+            <div class="spec-cell-value">City of Industry, CA</div>
+            <div class="spec-cell-sub">Rail-Served · cGMP</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell-label">Documentation</div>
+            <div class="spec-cell-value">COA + TDS + SDS</div>
+            <div class="spec-cell-sub">Shipped with Every Order</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section class="about">
+    <div class="about-bg-text">CRAFT</div>
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-image-wrap reveal reveal--left">
+          <div class="about-img">
+            <img src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-home-image1.jpg" alt="American Oil Products facility" />
+          </div>
+          <div class="about-badge">
+            <span class="about-badge-year">25+</span>
+            <span class="about-badge-label">Years in Business</span>
+          </div>
+        </div>
+        <div class="about-text reveal reveal--right">
+          <div class="section-label">Our Story</div>
+          <h2 class="about-title">Where Commodity<br>Meets <span>Craft.</span></h2>
+          <p class="about-body">
+            Since 1997, American Oil Products has filled the gap in the American supply chain. We aren't just a distributor — we are a strategic bridge between global manufacturing and North American brand owners.
+          </p>
+          <p class="about-body">
+            Our City of Industry, CA facility is rail-served and cGMP compliant. We handle everything from drum-level custom fills to full tanker loads — with full documentation ready before your PO is even approved. When you call us, you talk to an expert, not a ticketing system.
+          </p>
+          <a href="#quote" class="about-cta">Talk to an Expert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST METRICS ── -->
+  <div class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item reveal reveal-delay-1">
+          <span class="trust-num">25+</span>
+          <span class="trust-label">Years in Business</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <span class="trust-num">500+</span>
+          <span class="trust-label">Products Available</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <span class="trust-num">48</span>
+          <span class="trust-label">States Served</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-4">
+          <span class="trust-num">100%</span>
+          <span class="trust-label">Quality Guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA BAND ── -->
+  <section class="cta-band" id="quote">
+    <div class="container">
+      <div class="cta-eyebrow reveal">Ready to Work Together</div>
+      <h2 class="cta-headline reveal reveal-delay-1">The Better Choice<br>is One Call Away.</h2>
+      <p class="cta-sub reveal reveal-delay-2">Request a quote, a COA, or just a conversation with someone who actually knows your ingredients. No ticketing system. No runaround.</p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="mailto:info@americanoilproducts.com" class="btn-dark">Request a Quote &amp; COA</a>
+        <a href="tel:6263307151" class="btn-ghost-dark">Call 626.330.7151</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img class="footer-logo" src="https://americanoilproducts.com/wp-content/uploads/2025/03/american-oil-products-logo.png" alt="American Oil Products" />
+          <p class="footer-tagline">Premium wholesale oil and raw material supplier for personal care, pharma, candle, and industrial manufacturing.</p>
+          <a href="tel:6263307151" class="footer-phone">626.330.7151</a>
+        </div>
+        <div>
+          <div class="footer-col-label">Products</div>
+          <ul class="footer-links">
+            <li><a href="#">Natural Oils</a></li>
+            <li><a href="#">Essential Oils</a></li>
+            <li><a href="#">Waxes &amp; Fatty Acids</a></li>
+            <li><a href="#">Alcohols &amp; Glycols</a></li>
+            <li><a href="#">Petrolatum &amp; Mineral Oils</a></li>
+            <li><a href="#">Specialty &amp; Industrial</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-label">Industries</div>
+          <ul class="footer-links">
+            <li><a href="#">Cosmetic &amp; Skincare</a></li>
+            <li><a href="#">Candle &amp; Wax</a></li>
+            <li><a href="#">Food &amp; Consumables</a></li>
+            <li><a href="#">Pharmaceutical</a></li>
+            <li><a href="#">HI&amp;I</a></li>
+            <li><a href="#">Industrial</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-label">Contact</div>
+          <ul class="footer-links">
+            <li><a href="#">Get a Quote</a></li>
+            <li><a href="#">Request a COA</a></li>
+            <li><a href="#">Technical Support</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 American Oil Products, Inc. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // ── NAV BG ON SCROLL ──
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.style.background = 'rgba(10,10,10,0.96)';
+      } else {
+        nav.style.background = 'rgba(10,10,10,0.78)';
+      }
+    }, { passive: true });
+
+    // ── SCROLL TO TOP ──
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
